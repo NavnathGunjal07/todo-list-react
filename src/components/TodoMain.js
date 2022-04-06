@@ -1,48 +1,60 @@
-import React, {useState} from 'react'
+import React from 'react'
 import TodoItem from './TodoItem'
 
 
 // session 
 
-function TodoMain() {
-    const [task, setTask] = useState('');
-    const [taskArray, setTaskArray] = useState([]);
-    const onTaskChange = (event) => {
-        setTask(event.target.value);
+class TodoMain extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        error: null,
+        isLoaded: false,
+        items: []
+      };
     }
-    const addTask = () => {
-        setTaskArray((prevTasks) => {
-            return [...prevTasks, task];
-        })
-        setTask('');
+    componentDidMount() {
+      fetch("https://my-json-server.typicode.com/NavnathGunjal07/todo-list-react/db")
+        .then(res => res.json())
+        .then(
+          (result) => {
+            this.setState({
+              isLoaded: true,
+              items: result.items
+            });
+          },
+         //handling errors in components || in fetch
+          (error) => {
+            this.setState({
+              isLoaded: true,
+              error
+            });
+          }
+        )
     }
-    const deleteItem = (id) => {
-        console.log(id, 'deleted');
-        setTaskArray((prevTasks) => {
-            return prevTasks.filter((arrElement, index) => {
-                return index !== id;
-            })
-        })
-    }
-    return (
-        <div className="main_div">
-            <div className="center_div">
-                <h1>Todo List</h1>
-                <input type="text" value={task} placeholder="Add your task" onChange={onTaskChange}/>
-               <button className="newBtn" onClick={addTask}>Add Task</button>
-               <ol>
-                   {
-                       console.log(taskArray)
-                   }
-                   {
-                       taskArray.map((val, index) => {
-                           return <TodoItem text={val} id={index} onSelect={deleteItem}/>
-                       })
-                   }
-               </ol>
-            </div>
-        </div>
-    )
-}
+    
+    return (){
+      const { error, isLoaded, items } = this.state;
+      if (error) {
+        return <div>Error: {error.message}</div>;
+      } else if (!isLoaded) {
+        return <div>Loading...</div>;
+      } else {
+        return (
+          <div>
+            <h1>Todo List</h1>
+            <input type="text" placeholder="Add your task"/>
+            <button className="newBtn">Add Task</button>
 
-export default TodoMain;
+            {
+              items.map((todo,index) => (
+                <TodoItem key={index} todo={todo} />
+              ))
+            }
+          </div>
+        );
+      }
+    }
+  }
+
+export default TodoMain
