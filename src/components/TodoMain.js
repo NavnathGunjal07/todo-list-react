@@ -64,7 +64,7 @@ class TodoMain extends React.Component {
        console.log("Dummy edit task method");
        console.log('edit id: ', id);
        fetch('https://my-json-server.typicode.com/NavnathGunjal07/todo-list-react/items', {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify({
          id: 4,
          task: 'create good readme file',

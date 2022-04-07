@@ -45,9 +45,9 @@ Run Project
 
 Now you can access  on localhost:3000  
 
-## folder structure
+## Folder Structure
 
- 📦todo-list-react
+ 📦todo-list-react  
     ┣ 📂public  
     ┃ ┣ 📜favicon.ico  
     ┃ ┣ 📜index.html  
