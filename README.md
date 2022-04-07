@@ -21,7 +21,7 @@ It's a simple todo application in react, it fetchs todo tasks from fake server a
 ## Deployment
 
 ```bash
-  http://codeialcoders.in/
+  https://todolistappreact1.herokuapp.com/
 ```
 ## Installation And Usage
 
@@ -32,7 +32,7 @@ To run this project run
 ```
 Go to directory
 ```bash
-  cd codeial
+  cd todo-list-react
 ```
 Install all dependecies
 ```bash

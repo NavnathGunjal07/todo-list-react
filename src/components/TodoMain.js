@@ -2,7 +2,7 @@ import React from 'react'
 import TodoItem from './TodoItem'
 
 
-// session 
+// component for todo-list 
 
 class TodoMain extends React.Component {
     constructor(props) {
@@ -13,6 +13,7 @@ class TodoMain extends React.Component {
         items: []
       };
     }
+    //fetching array from dummy server api call.
     componentDidMount() {
       fetch("https://my-json-server.typicode.com/NavnathGunjal07/todo-list-react/db")
         .then(res => res.json())
@@ -35,6 +36,7 @@ class TodoMain extends React.Component {
      
     render (){
       const { items,error, isLoaded } = this.state;
+      //method for adding task in array... made dummy api call for it
       const addTask = () => {
         console.log("Dummy Add task method");
         fetch('https://my-json-server.typicode.com/NavnathGunjal07/todo-list-react/items', {
@@ -50,12 +52,14 @@ class TodoMain extends React.Component {
               .then((response) => response.json())
               .then((json) => console.log("Request Sucessfull ",json));
     }
+    //method for deleting task from array... made dummy api call for it
       const deleteItem = (id) => {
         console.log("Dummy delete task method");
         fetch('https://my-json-server.typicode.com/NavnathGunjal07/todo-list-react/items/'+id, {
             method: 'DELETE',
           }).then(console.log('request succesfull deleted id: ', id));
        }
+    //method for editing task of array... made dummy api call for it
     const editItem = (id) => {
        console.log("Dummy edit task method");
        console.log('edit id: ', id);
