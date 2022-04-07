@@ -36,16 +36,41 @@ class TodoMain extends React.Component {
     render (){
       const { items,error, isLoaded } = this.state;
       const addTask = () => {
-       
-        console.log("Dummy Add task method")
+        console.log("Dummy Add task method");
+        fetch('https://my-json-server.typicode.com/NavnathGunjal07/todo-list-react/items', {
+                method: 'POST',
+                body: JSON.stringify({
+                 id: 4,
+                 task: 'Host project on heroku',
+                }),
+                headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
+                },
+              })
+              .then((response) => response.json())
+              .then((json) => console.log("Request Sucessfull ",json));
     }
       const deleteItem = (id) => {
-        console.log('deleted id: ', id);
-        console.log("Dummy delete task method")
+        console.log("Dummy delete task method");
+        fetch('https://my-json-server.typicode.com/NavnathGunjal07/todo-list-react/items/'+id, {
+            method: 'DELETE',
+          }).then(console.log('request succesfull deleted id: ', id));
        }
     const editItem = (id) => {
-       console.log('edit id: ', id);
        console.log("Dummy edit task method");
+       console.log('edit id: ', id);
+       fetch('https://my-json-server.typicode.com/NavnathGunjal07/todo-list-react/items', {
+        method: 'POST',
+        body: JSON.stringify({
+         id: 4,
+         task: 'create good readme file',
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+      .then((response) => response.json())
+      .then((json) => console.log("Request Sucessfull ",json));
      }
       if (error) {
         return <div>Error: {error.message}</div>;
