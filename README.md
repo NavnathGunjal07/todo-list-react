@@ -43,7 +43,11 @@ Run Project
   npm start
 ```
 
-Now you can access  on localhost:3000 📦todo-list-react  
+Now you can access  on localhost:3000  
+
+## folder structure
+
+ 📦todo-list-react
     ┣ 📂public  
     ┃ ┣ 📜favicon.ico  
     ┃ ┣ 📜index.html  
