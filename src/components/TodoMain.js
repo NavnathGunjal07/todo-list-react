@@ -32,25 +32,39 @@ class TodoMain extends React.Component {
           }
         )
     }
-    
-    return (){
-      const { error, isLoaded, items } = this.state;
+     
+    render (){
+      const { items,error, isLoaded } = this.state;
+      const addTask = () => {
+       
+        console.log("Dummy Add task method")
+    }
+      const deleteItem = (id) => {
+        console.log('deleted id: ', id);
+        console.log("Dummy delete task method")
+       }
+    const editItem = (id) => {
+       console.log('edit id: ', id);
+       console.log("Dummy edit task method");
+     }
       if (error) {
         return <div>Error: {error.message}</div>;
       } else if (!isLoaded) {
         return <div>Loading...</div>;
-      } else {
+      }else{
         return (
           <div>
             <h1>Todo List</h1>
             <input type="text" placeholder="Add your task"/>
-            <button className="newBtn">Add Task</button>
-
+            <button className="newBtn" onClick={addTask}>Add Task</button>
+           {console.log(items)}
+           <ul>
             {
-              items.map((todo,index) => (
-                <TodoItem key={index} todo={todo} />
-              ))
+              items.map((todo) => {
+                return <TodoItem  todo={todo.task} key={todo.id} id={todo.id} onSelectdelete={deleteItem} onSelectedit={editItem}/>
+              })
             }
+            </ul>
           </div>
         );
       }
